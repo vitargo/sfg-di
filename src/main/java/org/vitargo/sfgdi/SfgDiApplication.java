@@ -3,10 +3,7 @@ package org.vitargo.sfgdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.vitargo.sfgdi.controllers.ConstructorInjectedController;
-import org.vitargo.sfgdi.controllers.MyController;
-import org.vitargo.sfgdi.controllers.PropertyInjectedController;
-import org.vitargo.sfgdi.controllers.SetterInjectedController;
+import org.vitargo.sfgdi.controllers.*;
 
 @SpringBootApplication
 public class SfgDiApplication {
@@ -18,6 +15,12 @@ public class SfgDiApplication {
 		MyController myController = (MyController) ctx.getBean("myController");
 
 		System.out.println(myController.getHello());
+
+		System.out.println("---- i18n ----");
+
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+
+		System.out.println(i18nController.getHello());
 
 		System.out.println("---- Primary ----");
 
@@ -41,5 +44,4 @@ public class SfgDiApplication {
 
 		System.out.println(constructorInjectedController.getGreeting());
 	}
-
 }
