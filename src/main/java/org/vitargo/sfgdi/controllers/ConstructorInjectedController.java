@@ -1,7 +1,9 @@
 package org.vitargo.sfgdi.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.vitargo.sfgdi.services.GreetingService;
 
+@Controller
 public class ConstructorInjectedController {
 
     private GreetingService greetingService;
