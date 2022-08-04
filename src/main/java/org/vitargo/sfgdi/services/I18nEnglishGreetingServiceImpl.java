@@ -1,14 +1,20 @@
 package org.vitargo.sfgdi.services;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import org.vitargo.sfgdi.repository.EnglishGreetingRepository;
 
-@Profile("EN")
-@Service("i18nService")
-public class I18nEnglishGreetingServiceImpl implements GreetingService{
+//@Profile("EN")
+//@Service("i18nService")
+public class I18nEnglishGreetingServiceImpl implements GreetingService {
+
+    EnglishGreetingRepository englishGreetingRepository;
+
+    public I18nEnglishGreetingServiceImpl(EnglishGreetingRepository englishGreetingRepository) {
+        this.englishGreetingRepository = englishGreetingRepository;
+    }
 
     @Override
     public String getGreeting() {
-        return "Good evening, we are from Ukraine!";
+
+        return englishGreetingRepository.getGreetingFromRepository();
     }
 }

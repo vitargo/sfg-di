@@ -3,8 +3,10 @@ package org.vitargo.sfgdi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.vitargo.sfgdi.controllers.*;
 
+@ComponentScan(basePackages = {"org.vitargo.sfgdi", "org.vitargo.greetings", "org.vitargo.config", "org.vitargo.pets"})
 @SpringBootApplication
 public class SfgDiApplication {
 
@@ -43,5 +45,11 @@ public class SfgDiApplication {
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 
 		System.out.println(constructorInjectedController.getGreeting());
+
+		System.out.println("---- Pet ----");
+
+		PetController petController = (PetController) ctx.getBean("petController");
+
+		System.out.println(petController.whichPetIsTheBest());
 	}
 }
