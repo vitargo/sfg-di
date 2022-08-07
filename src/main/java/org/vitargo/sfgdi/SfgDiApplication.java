@@ -5,10 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.vitargo.sfgdi.controllers.*;
+import org.vitargo.sfgdi.datasource.FakeDataSource;
 import org.vitargo.sfgdi.services.PrototypeBean;
 import org.vitargo.sfgdi.services.SingletonBean;
 
-@ComponentScan(basePackages = {"org.vitargo.sfgdi", "org.vitargo.greetings", "org.vitargo.config", "org.vitargo.pets"})
+@ComponentScan(basePackages = {"org.vitargo.sfgdi", "org.vitargo.pets"})
 @SpringBootApplication
 public class SfgDiApplication {
 
@@ -52,5 +53,11 @@ public class SfgDiApplication {
 		System.out.println(prototypeBean1.getBeantype());
 		PrototypeBean prototypeBean2 = (PrototypeBean) ctx.getBean("prototypeBean");
 		System.out.println(prototypeBean2.getBeantype());
+
+		System.out.println("---- FakeDataSource Properties ----");
+		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean("fakeDataSource");
+		System.out.println(fakeDataSource.getUsername());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcurl());
 	}
 }

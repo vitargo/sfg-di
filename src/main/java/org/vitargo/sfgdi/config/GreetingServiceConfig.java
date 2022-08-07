@@ -1,20 +1,31 @@
 package org.vitargo.sfgdi.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 import org.vitargo.pets.PetService;
 import org.vitargo.pets.PetServiceFactory;
+import org.vitargo.sfgdi.datasource.FakeDataSource;
 import org.vitargo.sfgdi.repository.EnglishGreetingRepository;
 import org.vitargo.sfgdi.repository.EnglishGreetingRepositoryImpl;
 import org.vitargo.sfgdi.services.ConstructorGreetingServiceImpl;
 import org.vitargo.sfgdi.services.I18nEnglishGreetingServiceImpl;
 import org.vitargo.sfgdi.services.I18nUkrainianGreetingServiceImpl;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfg-di-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${vs.username}") String username,
+                                  @Value("${vs.password}")String password,
+                                  @Value("${vs.jdbcurl}")String jdbcurl){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcurl(jdbcurl);
+        return fakeDataSource;
+    }
 
     @Bean
     PetServiceFactory petServiceFactory() {
