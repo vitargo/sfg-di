@@ -1,6 +1,7 @@
 package org.vitargo.sfgdi.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 import org.vitargo.pets.PetService;
 import org.vitargo.pets.PetServiceFactory;
@@ -11,7 +12,8 @@ import org.vitargo.sfgdi.services.ConstructorGreetingServiceImpl;
 import org.vitargo.sfgdi.services.I18nEnglishGreetingServiceImpl;
 import org.vitargo.sfgdi.services.I18nUkrainianGreetingServiceImpl;
 
-@PropertySource("classpath:datasource.properties")
+//@PropertySource("classpath:datasource.properties")
+@EnableConfigurationProperties(SfgConstructorConfiguration.class)
 @ImportResource("classpath:sfg-di-config.xml")
 @Configuration
 public class GreetingServiceConfig {

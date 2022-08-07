@@ -1,0 +1,4 @@
+vs:
+  username: YmlUsername
+  password: YmlPassword
+  jdbcurl: YmlJdbcUrl
